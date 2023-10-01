@@ -1,23 +1,29 @@
-import { useState, useEffect } from 'react';
-import {LoadingScreen} from './components/LoadingScreen'
-
+import { useState } from "react";
+import { useSpring, animated } from "react-spring";
+import { LoadingScreen } from "./components/LoadingScreen";
+import { Header } from "./components/Header";
 
 function App() {
-  // Cargar useState para manejar estado de la pantalla de carga
   const [loadingFinished, setLoadingFinished] = useState(false);
 
+  const contentProps = useSpring({
+    opacity: loadingFinished ? 1 : 0,
+    from: { opacity: 0 },
+  });
 
   return (
-    <main>
+    <div className="font-leagueSpartan">
       {loadingFinished ? (
-        // Contenido principal
-        <h1>Hola</h1>
+        <animated.div style={contentProps}>
+          {/* Contenido principal */}
+          <Header/>
+
+        </animated.div>
       ) : (
         <LoadingScreen onFinished={() => setLoadingFinished(true)} />
       )}
-    </main>
-    
-  )
+    </div>
+  );
 }
 
 export default App;
