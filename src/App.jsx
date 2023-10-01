@@ -15,8 +15,10 @@ function App() {
     <div className="font-leagueSpartan">
       {loadingFinished ? (
         <animated.div style={contentProps}>
+
           {/* Contenido principal */}
           <Header/>
+          
 
         </animated.div>
       ) : (
